@@ -1,9 +1,12 @@
-export default function Slug(props: { params: { slug: (string | number)[] } }) {
+export default async function Slug(props: {
+	params: Promise<{ slug: string[] }>;
+}) {
+	const { slug } = await props.params;
 	return (
-		<h1>
-			{props.params.slug.map((item) => (
+		<div>
+			{slug.map((item) => (
 				<p key={item}>{item}</p>
 			))}
-		</h1>
+		</div>
 	);
 }

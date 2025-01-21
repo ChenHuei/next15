@@ -1,3 +1,4 @@
-export default function Blog(props: { params: { id: string | number } }) {
-	return <h1>{props.params.id}</h1>;
+export default async function Blog(props: { params: Promise<{ id: string }> }) {
+	const { id } = await props.params;
+	return <h1>{id}</h1>;
 }
