@@ -1,10 +1,7 @@
+import { use } from 'react';
 import { Modal } from './modal';
 
-export default async function PhotoModal({
-	params,
-}: {
-	params: Promise<{ id: string }>;
-}) {
-	const photoId = (await params).id;
-	return <Modal>{photoId}</Modal>;
+export default function PhotoModal(props: { params: Promise<{ id: string }> }) {
+	const { id } = use(props.params);
+	return <Modal>{id}</Modal>;
 }

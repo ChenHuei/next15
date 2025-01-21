@@ -1,7 +1,7 @@
-export default async function Slug(props: {
-	params: Promise<{ slug: string[] }>;
-}) {
-	const { slug } = await props.params;
+import { use } from 'react';
+
+export default function Slug(props: { params: Promise<{ slug: string[] }> }) {
+	const { slug } = use(props.params);
 	return (
 		<div>
 			{slug.map((item) => (
