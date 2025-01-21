@@ -1,7 +1,10 @@
-import { ElementRef, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+'use client';
 
-export default function Modal({ children }: { children: React.ReactNode }) {
+import { type ElementRef, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { createPortal } from 'react-dom';
+
+export function Modal({ children }: { children: React.ReactNode }) {
 	const router = useRouter();
 	const dialogRef = useRef<ElementRef<'dialog'>>(null);
 
@@ -15,12 +18,13 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 		router.back();
 	}
 
-	return (
+	return createPortal(
 		<div className="modal-backdrop">
 			<dialog ref={dialogRef} className="modal" onClose={onDismiss}>
 				{children}
 				<button onClick={onDismiss} className="close-button" />
 			</dialog>
-		</div>
+		</div>,
+		document.getElementById('modal-root')!,
 	);
 }
