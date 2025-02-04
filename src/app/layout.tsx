@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Tab from '@/components/Tab';
 import './globals.css';
 
 const geistSans = Geist({
@@ -28,6 +29,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+				<Tab />
 				{children}
 				{modal}
 				<div id="modal-root" />
